@@ -8,7 +8,7 @@ const User = require('../model/User');
 const passHelper = require('../lib/passhelper');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const PasswordHelper = require('../lib/passhelper');
+const auth = require('../lib/auth')
 
 router.use(cookieParser());
 router.use(bodyParser.json({ type: 'application/json' }));
@@ -19,7 +19,7 @@ router.use(session({
     saveUninitialized: false, // don't create session until something stored
     secret: process.env.SECRET
 }));
-router.use(function (req, res, next) {
+router.use(async function (req, res, next) {
     var err = req.session.error;
     var msg = req.session.success;
     delete req.session.error;
@@ -96,6 +96,7 @@ router.post('/login', async (req, res) => {
             let token = jwt.sign({ password: req.body.password, }, process.env.SECRET, { expiresIn: '1h' });
             if (!user.tokens) {
                 setToken = await User.updateOne({ _id: user._id }, { tokens: token })
+                res.locals.name = user.firstName
                 res.cookie('access_token', token);
                 res.redirect('/dashboard');
             } else {
@@ -103,11 +104,13 @@ router.post('/login', async (req, res) => {
                     let verify = jwt.verify(user.tokens, process.env.SECRET);
                     if (verify.password === req.body.password) {
                         console.log('Token verified successfully')
+                        res.locals.name = user.firstName
                         res.cookie('access_token', user.tokens)
                         res.redirect('/dashboard');
                     }
                 } catch (error) {
                     setToken = await User.updateOne({ _id: user._id }, { tokens: token })
+                    res.locals.name = user
                     res.cookie('access_token', token);
                     res.redirect('/dashboard');
                 }
@@ -129,41 +132,5 @@ router.get('/logout', (req, res) => {
     res.clearCookie('access_token')
     res.redirect('/login')
 })
-
-//Authentication
-function auth(token) {
-    var verify;
-    try {
-        verify = jwt.verify(token, process.env.SECRET);
-    } catch (e) {
-        return false
-    }
-    let password = verify.password;
-    let helper = new PasswordHelper(password, null);
-    let passToCompare = helper.verifyPassword
-
-    return passToCompare
-}
-async function validate(req, res, next) {
-    if (req.cookies.access_token) {
-        let token = req.cookies.access_token
-        let checkCookie = auth(token)
-        if (checkCookie) {
-            req.validate = true
-            next()
-        }
-    }
-    req.validate = false
-    next()
-}   
-
-router.use(validate)
-
-//All route from this point forward will be secured and use authentication
-
-//Dashboard
-router.get('/dashboard', (req, res) => {
-    req.validate ? res.render('dashboard') : res.redirect('/login')
-});
 
 module.exports = router

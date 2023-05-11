@@ -1,0 +1,88 @@
+<%- include('../partials/dashboard-header'); %>
+
+    <main>
+        <div class="ui segment">
+            <h1>Orders</h1> 
+            <%- message %>
+
+            <div class="'ui grid">
+                <div class="four wide column">
+                    <div class="ui inverted vertical pointing menu">
+                        <a class="item" href="/account">Account</a>
+                        <a class="item active" href="/orders">Orders</a>
+                        <a class="item" href="/deliveries">Deliveries</a>
+                        <a class="item" href="/settings">Settings</a>
+                    </div>
+                </div>
+                <div class="six wide column">
+                    <table class="ui striped table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date Joined</th>
+                                <th>E-mail</th>
+                                <th>Called</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John Lilki</td>
+                                <td>September 14, 2013</td>
+                                <td>jhlilk22@yahoo.com</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Jamie Harington</td>
+                                <td>January 11, 2014</td>
+                                <td>jamieharingonton@yahoo.com</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Jill Lewis</td>
+                                <td>May 11, 2014</td>
+                                <td>jilsewris22@yahoo.com</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>John Lilki</td>
+                                <td>September 14, 2013</td>
+                                <td>jhlilk22@yahoo.com</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>John Lilki</td>
+                                <td>September 14, 2013</td>
+                                <td>jhlilk22@yahoo.com</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Jamie Harington</td>
+                                <td>January 11, 2014</td>
+                                <td>jamieharingonton@yahoo.com</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Jill Lewis</td>
+                                <td>May 11, 2014</td>
+                                <td>jilsewris22@yahoo.com</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>John Lilki</td>
+                                <td>September 14, 2013</td>
+                                <td>jhlilk22@yahoo.com</td>
+                                <td>No</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer >
+        <%- include('../partials/footer'); %>
+    </footer>
+
+    </body> 
+</html>
