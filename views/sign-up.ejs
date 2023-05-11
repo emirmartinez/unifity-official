@@ -1,0 +1,68 @@
+<%- include('partials/header'); %>
+
+    <main>
+        <div class="ui segment">
+            <h1 class="ui center aligned header">Sign Up Form</h1>
+            <br>
+			<div class="ui text container">
+				<form class="ui fluid form" method="post" action="/sign-up">
+                    <div class="field">
+                        <input type="text" placeholder="First Name" name="firstName" id="firstName">
+                        <!-- <div class="ui pointing red basic label">
+                        Please enter a value
+                        </div> -->
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="field">
+                        <input type="text" placeholder="Last Name" name="lastName" id="lastName">
+                        <!-- <div class="ui pointing red basic label">
+                            Please enter a value
+                        </div> -->
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="field">
+                    <input type="email" placeholder="Email" name="email" id="email">
+                        <!-- <div class="ui pointing red basic label">
+                        Your password must be 6 characters or more
+                        </div> -->
+                    </div>
+                    <div class="ui divider"></div>
+                    <div class="field">
+                        <input type="password" placeholder="Password" name="password" id="password" onkeyup=check()>
+                            <!-- <div class="ui pointing red basic label">
+                            Your password must be 6 characters or more
+                            </div> -->
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Confirm Password" id="confirm_password" onkeyup=check()>
+                        <span id='message'></span>
+                            <!-- <div class="ui pointing red basic label">
+                            Your password must be 6 characters or more
+                            </div> -->
+                    </div>
+                    <%- message %>
+                    <input class="ui huge button" type="submit" value="Sign Up">
+                </form>
+			</div>            
+        </div>
+    </main>
+
+    <script>
+        let check = function() {
+        if (document.getElementById('password').value ==
+            document.getElementById('confirm_password').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Matching';
+            } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Not Matching';
+            }
+        }
+    </script>
+
+	<footer >
+    <%- include('partials/footer'); %>
+	</footer>
+
+    </body> 
+</html>
