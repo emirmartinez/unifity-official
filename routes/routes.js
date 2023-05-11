@@ -96,7 +96,6 @@ router.post('/login', async (req, res) => {
             let token = jwt.sign({ password: req.body.password, }, process.env.SECRET, { expiresIn: '1h' });
             if (!user.tokens) {
                 setToken = await User.updateOne({ _id: user._id }, { tokens: token })
-                res.locals.name = user.firstName
                 res.cookie('access_token', token);
                 res.redirect('/dashboard');
             } else {
@@ -104,13 +103,11 @@ router.post('/login', async (req, res) => {
                     let verify = jwt.verify(user.tokens, process.env.SECRET);
                     if (verify.password === req.body.password) {
                         console.log('Token verified successfully')
-                        res.locals.name = user.firstName
                         res.cookie('access_token', user.tokens)
                         res.redirect('/dashboard');
                     }
                 } catch (error) {
                     setToken = await User.updateOne({ _id: user._id }, { tokens: token })
-                    res.locals.name = user
                     res.cookie('access_token', token);
                     res.redirect('/dashboard');
                 }
