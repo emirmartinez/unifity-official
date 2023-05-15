@@ -33,15 +33,6 @@ dashboard.use((req, res, next) => {
     next()
 });
 
-function getUser(req, res, next) {
-    let user = {
-        firstName: "John",
-        lastName: "Smith",
-    }
-    res.locals.user = user
-    next()
-}
-
 // Auth validation
 async function validate(req, res, next) {
     if (req.cookies.access_token) {
@@ -55,17 +46,30 @@ async function validate(req, res, next) {
     req.validate = false
     next()
 }
+//Get user data
+async function getUser(req, res, next) {
+    if (req.cookies.access_token) {
+        try {
+            let token = req.cookies.access_token
+            let user = await User.findOne({ tokens: token })
+            res.locals.user = { firstName: user.firstName, lastName: user.lastName, email: user.email}
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    next()
+}
 
-dashboard.use(validate)
 dashboard.use(getUser)
+dashboard.use(validate)
 
 
 dashboard.get('/dashboard', (req, res) => {
     req.validate ? res.render('dashboard') : res.redirect('/login')
 });
 
-dashboard.get('/account', (req, res) => {
-    req.validate ? res.render('dashboard/account') : res.redirect('/login')
+dashboard.get('/profile', (req, res) => {
+    req.validate ? res.render('dashboard/profile') : res.redirect('/login')
 });
 
 dashboard.get('/orders', (req, res) => {

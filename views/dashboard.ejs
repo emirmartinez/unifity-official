@@ -1,22 +1,58 @@
 <%- include('partials/dashboard-header'); %>
 
-    <main>
-        <div class="ui segment">
-            <h1>Dashboard</h1> 
-            <!-- <%- message %> -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="navbar">
+          <div class="container">
+               <!-- <a class="navbar-brand" href="#">Container</a>      This is where the logo goes.-->
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
+                    aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+               </button>
 
-            <div class="ui inverted vertical pointing menu">
-                <a class="item" href="/account">Account</a>
-                <a class="item" href="/orders">Orders</a>
-                <a class="item" href="/deliveries">Deliveries</a>
-                <a class="item" href="/settings">Settings</a>
-            </div>
-        </div>
-    </main>
+               <div class="collapse navbar-collapse" id="navbarsExample07">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                         <li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="/dashboard">Dasboard</a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" aria-current="page" href="/orders">Orders</a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" aria-current="page" href="/deliveries">Deliveries</a>
+                         </li>
+                    </ul>
+                    <div class="nav-item dropdown" style="padding-right: 20px;">
+                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                              style=color:white;>
+                              <i class="large user circle icon"></i>
+                              <% if (user) { %>
+                                   <i>
+                                        <%= user.firstName %>
+                                   </i>
+                              <% } %>
+                         </a>
+                         <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                              <li><a class="dropdown-item" href="/settings">Settings</a></li>
+                              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                         </ul>
+                    </div>
+               </div>
+          </div>
+     </nav>
 
-    <footer >
-        <%- include('partials/footer'); %>
-    </footer>
+     <body>
 
-    </body> 
+          <main>
+               <div class="ui segment">
+                    <h1>Dashboard</h1>
+                    <!-- <%- message %> -->
+               </div>
+          </main>
+
+          <footer>
+               <%- include('partials/footer'); %>
+          </footer>
+
+     </body>
+
 </html>
