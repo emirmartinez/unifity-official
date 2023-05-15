@@ -93,7 +93,7 @@ router.post('/login', async (req, res) => {
         let check = compare.checkPassword;
         //If password match redirect to dashboard
         if (check) {
-            let token = jwt.sign({ password: req.body.password, }, process.env.SECRET, { expiresIn: '1h' });
+            let token = jwt.sign({ password: req.body.password, }, process.env.SECRET, { expiresIn: '3h' });
             if (!user.tokens) {
                 setToken = await User.updateOne({ _id: user._id }, { tokens: token })
                 res.cookie('access_token', token);
@@ -128,6 +128,10 @@ router.post('/login', async (req, res) => {
 router.get('/logout', (req, res) => {
     res.clearCookie('access_token')
     res.redirect('/login')
+})
+
+router.post('/webhook', (req, res) => {
+    console.log(req.body)
 })
 
 module.exports = router
