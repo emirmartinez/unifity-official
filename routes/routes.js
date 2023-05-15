@@ -47,8 +47,8 @@ router.get('/sign-up', (req, res) => {
     res.render('sign-up')
 });
 router.post('/sign-up', async (req, res) => {
-    let fname = req.body.firstname;
-    let lname = req.body.lastname;
+    let fname = req.body.firstName;
+    let lname = req.body.lastName;
     let email = req.body.email;
 
     try {
