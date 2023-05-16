@@ -41,13 +41,96 @@
      </nav>
 
      <body>
-
-
           <main>
                <div class="ui segment">
-                    <h1>Profile</h1>
+                    <h1 class="ui center aligned header">Profile</h1>
                </div>
+
+               <!-- The form below is only cosmetic -->
+               <div class="ui text container edit" id="dummyform">
+                    <form class="ui fluid form">
+                         <div class="disabled field">
+                              <input type="text" placeholder="<%= user.firstName %>" name="firstName" id="firstName">
+                         </div>
+                         <div class="ui divider"></div>
+                         <div class="disabled field">
+                              <input type="text" placeholder="<%= user.lastName %>" name="lastName" id="lastName">
+                         </div>
+                         <div class="ui divider"></div>
+                         <div class="disabled field">
+                              <input type="email" placeholder="<%= user.email %>" name="email" id="email">
+                         </div>
+                         <div class="ui divider"></div>
+                         <div class="disabled field">
+                              <input type="password" placeholder="******************" name="password">
+                         </div>
+                    </form>
+                    <br>
+                    <button onclick=formChange() class="ui primary button">
+                         Edit
+                    </button>
+               </div>
+               <br>
+               <!-- The form below is the form that needs to be saved -->
+               <div class="ui text container" id="realform"  hidden>
+                    <form class="ui fluid form" method="post" action="/update-profile">
+                         <div class="field">
+                              <input type="text" placeholder="First Name" name="firstName" 
+                                   value="<%= user.firstName %>">
+                         </div>
+                         <div class="ui divider"></div>
+                         <div class="field">
+                              <input type="text" placeholder="Last Name" name="lastName"
+                                   value="<%= user.lastName %>">
+                         </div>
+                         <div class="ui divider"></div>
+                         <div class="field">
+                              <input type="email" placeholder="Email" name="email" value="<%= user.email %>">
+                         </div>
+                         <div class="ui divider"></div>
+                         <div class="field">
+                              <input type="password" placeholder="Password" name="password" id="password"
+                                   onkeyup=check()>
+                         </div>
+                         <div class="field">
+                              <input type="password" placeholder="Confirm Password" id="confirm_password"
+                                   onkeyup=check()>
+                              <span id='message'></span>
+                         </div>
+                         <%- message %>
+                         <button class="ui primary button">
+                              Save
+                         </button>
+                    </form>
+                    <br>
+                    <button onclick=cancelChange() class="ui red button">
+                         Cancel
+                    </button>
+               <br>
+               <br>
           </main>
+
+          <script>
+               let check = function () {
+                    if (document.getElementById('password').value ==
+                         document.getElementById('confirm_password').value) {
+                         document.getElementById('message').style.color = 'green';
+                         document.getElementById('message').innerHTML = 'Matching';
+                    } else {
+                         document.getElementById('message').style.color = 'red';
+                         document.getElementById('message').innerHTML = 'Not Matching';
+                    }
+               }
+
+               let formChange = function () {
+                         document.getElementById("dummyform").hidden = true;
+                         document.getElementById("realform").removeAttribute("hidden")
+                    }
+               let cancelChange = function () {
+                    document.getElementById("realform").hidden = true;
+                    document.getElementById("dummyform").removeAttribute("hidden")
+               }     
+          </script>
 
           <footer>
                <%- include('../partials/footer'); %>
@@ -55,4 +138,4 @@
 
      </body>
 
-</html>
+     </html>
