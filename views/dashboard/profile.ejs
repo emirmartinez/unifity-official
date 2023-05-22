@@ -28,7 +28,7 @@
                                    <i>
                                         <%= user.firstName %>
                                    </i>
-                                   <% } %>
+                              <% } %>
                          </a>
                          <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="/profile">Profile</a></li>
@@ -69,11 +69,19 @@
                     <button onclick=formChange() class="ui primary button">
                          Edit
                     </button>
+                    <br> 
+                    <%- message %>
                </div>
                <br>
                <!-- The form below is the form that needs to be saved -->
                <div class="ui text container" id="realform"  hidden>
-                    <form class="ui fluid form" method="post" action="/update-profile">
+                    <form class="ui fluid form" method="post" action="/profile">
+                         <div class="field">
+                              <input type="text" placeholder="profile" name="profile" value="true" hidden>
+                         </div>
+                         <div class="field" >
+                              <input type="text" placeholder="User ID" name="id" value="<%= user.id %>" hidden>
+                         </div>
                          <div class="field">
                               <input type="text" placeholder="First Name" name="firstName" 
                                    value="<%= user.firstName %>">
@@ -97,8 +105,7 @@
                                    onkeyup=check()>
                               <span id='message'></span>
                          </div>
-                         <%- message %>
-                         <button class="ui primary button">
+                         <button class="ui primary button" type="submit">
                               Save
                          </button>
                     </form>
