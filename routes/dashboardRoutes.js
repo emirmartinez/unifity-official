@@ -61,6 +61,7 @@ async function getUser(req, res, next) {
     next()
 }
 
+//Update profile logic
 async function updateProfile(body) {
     let message = "";
     if (!body.firstName || !body.lastName || !body.email || !body.password) {
