@@ -1,68 +1,49 @@
 <%- include('partials/header'); %>
+<main>
+    <h1 class="head-text">Sign Up Form</h1>
 
-    <main>
-        <div class="ui segment">
-            <h1 class="ui center aligned header">Sign Up Form</h1>
-            <br>
-			<div class="ui text container">
-				<form class="ui fluid form" method="post" action="/sign-up">
-                    <div class="field">
-                        <input type="text" placeholder="First Name" name="firstName" id="firstName">
-                        <!-- <div class="ui pointing red basic label">
-                        Please enter a value
-                        </div> -->
-                    </div>
-                    <div class="ui divider"></div>
-                    <div class="field">
-                        <input type="text" placeholder="Last Name" name="lastName" id="lastName">
-                        <!-- <div class="ui pointing red basic label">
-                            Please enter a value
-                        </div> -->
-                    </div>
-                    <div class="ui divider"></div>
-                    <div class="field">
-                    <input type="email" placeholder="Email" name="email" id="email">
-                        <!-- <div class="ui pointing red basic label">
-                        Your password must be 6 characters or more
-                        </div> -->
-                    </div>
-                    <div class="ui divider"></div>
-                    <div class="field">
-                        <input type="password" placeholder="Password" name="password" id="password" onkeyup=check()>
-                            <!-- <div class="ui pointing red basic label">
-                            Your password must be 6 characters or more
-                            </div> -->
-                    </div>
-                    <div class="field">
-                        <input type="password" placeholder="Confirm Password" id="confirm_password" onkeyup=check()>
-                        <span id='message'></span>
-                            <!-- <div class="ui pointing red basic label">
-                            Your password must be 6 characters or more
-                            </div> -->
-                    </div>
-                    <%- message %>
-                    <input class="ui huge button" type="submit" value="Sign Up">
-                </form>
-			</div>            
-        </div>
-    </main>
+    <div class="login-form">
+        <form method="post" action="/sign-up">
+            <div class="form-floating mb-3">
+                <input type="text" name="firstName" class="form-control" id="lastName" aria-describedby="firstName">
+                <label for="lastName">First Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="lastName" class="form-control" id="lastName" aria-describedby="lastName">
+                <label for="lastName">Last Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" name="email" class="form-control" id="floatingInput" aria-describedby="emailHelp">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control" id="floatingPassword" onkeyup=check()>
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" onkeyup=check()>
+                <label for="confirmPassword">Confirm Password</label>
+                <span id='message'></span>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-dark">Sign Up</button>
+            </div>
+        </form>
+    </div>
+    <%- message %>
+</main>
 
-    <script>
-        let check = function() {
-        if (document.getElementById('password').value ==
-            document.getElementById('confirm_password').value) {
+<script>
+    let check = function () {
+        if (document.getElementById('floatingPassword').value ==
+            document.getElementById('confirmPassword').value) {
             document.getElementById('message').style.color = 'green';
             document.getElementById('message').innerHTML = 'Matching';
-            } else {
+        } else {
             document.getElementById('message').style.color = 'red';
             document.getElementById('message').innerHTML = 'Not Matching';
-            }
         }
-    </script>
+    }
+</script>
 
-	<footer >
-    <%- include('partials/footer'); %>
-	</footer>
-
-    </body> 
-</html>
+<%- include('partials/footer'); %>

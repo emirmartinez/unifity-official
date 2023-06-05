@@ -36,6 +36,8 @@ router.use((req, res, next) => {
     next()
 });
 
+
+
 //Homepage
 router.get('/', (req, res) => {
     res.render('index')
@@ -133,5 +135,10 @@ router.get('/logout', (req, res) => {
 router.post('/webhook', (req, res) => {
     console.log(req.body)
 })
+
+//TODO: Remove test link
+router.get('/test', (req, res) => {
+    res.render('test/testlogin')
+});
 
 module.exports = router
