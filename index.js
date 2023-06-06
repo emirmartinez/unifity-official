@@ -7,7 +7,7 @@ const port = process.env.PORT;
 
 app.use(routes);
 app.use(dashboard);
-app.use(express.static(__dirname + '/views/css'))
+app.use(express.static(__dirname + '/public'))
 app.set("view engine", "ejs");
 
 app.listen(port, () => {

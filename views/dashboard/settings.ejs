@@ -28,11 +28,14 @@
                                    <i>
                                         <%= user.firstName %>
                                    </i>
-                                   <% } %>
+                              <% } %>
                          </a>
                          <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="/profile">Profile</a></li>
                               <li><a class="dropdown-item" href="/settings">Settings</a></li>
+                              <li>
+                                   <hr class="dropdown-divider">
+                              </li>
                               <li><a class="dropdown-item" href="/logout">Logout</a></li>
                          </ul>
                     </div>
@@ -49,10 +52,5 @@
                </div>
           </main>
 
-          <footer>
-               <%- include('../partials/footer'); %>
-          </footer>
 
-     </body>
-
-</html>
+<%- include('../partials/footer'); %>       

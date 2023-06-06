@@ -34,10 +34,10 @@ async function validate(req, res, next) {
         let checkCookie = auth.auth(token)
         if (checkCookie) {
             req.validate = true
-            next();
+        } else {
+            req.validate = false
         }
     }
-    req.validate = false
     next();
 }
 //Get user data

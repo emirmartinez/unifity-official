@@ -2,7 +2,6 @@
 
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="navbar">
           <div class="container">
-               <!-- <a class="navbar-brand" href="#">Container</a>      This is where the logo goes.-->
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
                     aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -33,6 +32,9 @@
                          <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="/profile">Profile</a></li>
                               <li><a class="dropdown-item" href="/settings">Settings</a></li>
+                              <li>
+                                   <hr class="dropdown-divider">
+                              </li>
                               <li><a class="dropdown-item" href="/logout">Logout</a></li>
                          </ul>
                     </div>
@@ -45,14 +47,7 @@
           <main>
                <div class="ui segment">
                     <h1>Dashboard</h1>
-                    <!-- <%- message %> -->
                </div>
           </main>
 
-          <footer>
-               <%- include('partials/footer'); %>
-          </footer>
-
-     </body>
-
-</html>
+<%- include('partials/footer'); %>
