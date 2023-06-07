@@ -127,6 +127,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
+//TODO: Delete token when user logs off. If user changes password, old token will not allow user to login again.
 router.get('/logout', (req, res) => {
     res.clearCookie('access_token')
     res.redirect('/login')
@@ -136,7 +137,7 @@ router.post('/webhook', (req, res) => {
     console.log(req.body)
 })
 
-//TODO: Remove test link
+//TODO: Remove test endpoint. This is for testing purposes only.
 router.get('/test', (req, res) => {
     res.render('test/testlogin')
 });

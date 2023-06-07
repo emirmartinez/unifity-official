@@ -45,81 +45,89 @@
 
      <body>
           <main>
-               <div class="ui segment">
+               <div class="head-text">
                     <h1 class="ui center aligned header">Profile</h1>
                </div>
 
-               <!-- The form below is only cosmetic -->
-               <div class="ui text container edit" id="dummyform">
-                    <form class="ui fluid form">
-                         <div class="disabled field">
-                              <input type="text" placeholder="<%= user.firstName %>" name="firstName" id="firstName">
-                         </div>
-                         <div class="ui divider"></div>
-                         <div class="disabled field">
-                              <input type="text" placeholder="<%= user.lastName %>" name="lastName" id="lastName">
-                         </div>
-                         <div class="ui divider"></div>
-                         <div class="disabled field">
-                              <input type="email" placeholder="<%= user.email %>" name="email" id="email">
-                         </div>
-                         <div class="ui divider"></div>
-                         <div class="disabled field">
-                              <input type="password" placeholder="******************" name="password">
-                         </div>
-                    </form>
-                    <br>
-                    <button onclick=formChange() class="ui primary button">
-                         Edit
-                    </button>
-                    <br> 
-                    <%- message %>
-               </div>
-               <br>
+               <!-- Dummy form  -->
+                    <div class="login-form" id="dummyform">
+                         <form >
+                              <div class="disabled field mb-3">
+                                   <label>First Name</label>
+                                   <input  type="text" name="firstName" class="form-control" 
+                                   placeholder="<%= user.firstName %>" aria-label="Disabled input example" disabled>
+                              </div>
+                              <div class="disabled field mb-3">
+                                   <label>Last Name</label>
+                                   <input  type="text" name="lastName" class="form-control" 
+                                   placeholder="<%= user.lastName %>" aria-label="Disabled input example" disabled>
+                              </div>
+                              <div class="disabled field mb-3">
+                                   <label>Email</label>
+                                   <input type="text" name="email" class="form-control" 
+                                   placeholder="<%= user.email %>" aria-label="Disabled input example" disabled>
+                              </div>
+                              <div class="disabled field mb-3">
+                                   <label >Password</label>
+                                   <input type="text" name="password" class="form-control" 
+                                   placeholder="******************" aria-label="Disabled input example" disabled>
+                              </div>
+                         </form>
+                         <br>
+                         <button onclick=formChange() class="btn btn-dark">
+                              Edit
+                         </button>
+                         <br>
+                         <%- message %>
+                    </div>
+
                <!-- The form below is the form that needs to be saved -->
-               <div class="ui text container" id="realform"  hidden>
-                    <form class="ui fluid form" method="post" action="/profile">
+               <div class="login-form" id="realform" hidden>
+                    <form method="post" action="/profile">
                          <div class="field">
                               <input type="text" placeholder="profile" name="profile" value="true" hidden>
                          </div>
-                         <div class="field" >
+                         <div class="field">
                               <input type="text" placeholder="User ID" name="id" value="<%= user.id %>" hidden>
                          </div>
-                         <div class="field">
-                              <input type="text" placeholder="First Name" name="firstName" 
-                                   value="<%= user.firstName %>">
+                         <div class="disabled field">
+                              <label for="floatingInput">First Name</label>
+                              <input id="floatingInput" type="text" name="firstName" class="form-control"
+                              value="<%= user.firstName %>">
                          </div>
-                         <div class="ui divider"></div>
-                         <div class="field">
-                              <input type="text" placeholder="Last Name" name="lastName"
-                                   value="<%= user.lastName %>">
+                         <div class="disabled field">
+                              <label for="floatingLastName">Last Name</label>
+                              <input id="floatingLastName" type="text" name="lastName" class="form-control"
+                              value="<%= user.lastName %>">
                          </div>
-                         <div class="ui divider"></div>
-                         <div class="field">
-                              <input type="email" placeholder="Email" name="email" value="<%= user.email %>">
+                         <div class="disabled field">
+                              <label for="floatingEmail">Email</label>
+                              <input id="floatingEmail" type="email" name="email" class="form-control" 
+                              value="<%= user.email %>">
                          </div>
-                         <div class="ui divider"></div>
-                         <div class="field">
-                              <input type="password" placeholder="Password" name="password" id="password"
-                                   onkeyup=check()>
+                         <div class="disabled field">
+                              <label for="floatingPassword">Password</label>
+                              <input type="password" placeholder="**********" name="password" id="password" class="form-control"
+                              value="" onkeyup=check() >
                          </div>
-                         <div class="field">
-                              <input type="password" placeholder="Confirm Password" id="confirm_password"
-                                   onkeyup=check()>
+                         <div class="disabled field">
+                              <label for="floatingConfirmPass">Confirm Password</label>
+                              <input type="password" placeholder="**********" id="confirm_password"class="form-control" 
+                              value="" onkeyup=check()>
                               <span id='message'></span>
                          </div>
-                         <button class="ui primary button" type="submit">
+                         <br>
+                         <button class="btn btn-dark" type="submit">
                               Save
                          </button>
                     </form>
                     <br>
-                    <button onclick=cancelChange() class="ui red button">
+                    <button onclick=cancelChange() class="btn btn-dark">
                          Cancel
                     </button>
-               <br>
+               </div>
                <br>
           </main>
-
           <script>
                let check = function () {
                     if (document.getElementById('password').value ==
@@ -131,7 +139,6 @@
                          document.getElementById('message').innerHTML = 'Not Matching';
                     }
                }
-
                let formChange = function () {
                          document.getElementById("dummyform").hidden = true;
                          document.getElementById("realform").removeAttribute("hidden")
